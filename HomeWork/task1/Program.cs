@@ -51,14 +51,14 @@ if (rows == columns)
     PrintArray(matrix);
     Console.WriteLine();
 
-    int[,] transposeMatrix = new int[matrix.GetLength(1), matrix.GetLength(0)];
+    int[,] transposedMatr = new int[matrix.GetLength(1), matrix.GetLength(0)];
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            transposeMatrix[j, i] = matrix[i, j];
+            transposedMatr[j, i] = matrix[i, j];
         }
     }
-    PrintArray(transposeMatrix);
+    PrintArray(transposedMatr);
 }
 else Console.WriteLine("Заменить строки на столбцы невозможно");

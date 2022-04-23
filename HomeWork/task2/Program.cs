@@ -24,39 +24,42 @@ void PrintArray(int[,] matr2)
 }
 
 Console.WriteLine("Введите количество строк");
-int k = int.Parse(Console.ReadLine());
+int l = int.Parse(Console.ReadLine());
 Console.WriteLine("Введите количество столбцов");
 int t = int.Parse(Console.ReadLine());
 Console.WriteLine();
 
-int[,] matrix = new int[k, t];
+int[,] matrix = new int[l, t];
 
-FillArray(matrix);
-PrintArray(matrix);
+Console.WriteLine("Введите количество строк 2 матрицы");
+int m = int.Parse(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов 2 матрицы");
+int n = int.Parse(Console.ReadLine());
 Console.WriteLine();
 
-int[,] matrix2 = new int[k, t];
+int[,] matrix2 = new int[m, n];
 
-FillArray(matrix2);
-PrintArray(matrix2);
-Console.WriteLine();
-
-int[,] ProductArrays(int[,] matr1,int[,] matr2)
+if (matrix.GetLength(1) == matrix2.GetLength(0))
 {
-    int[,] matr3 = new int[matr1.Length, matr2.Length];
-    for (int i = 0; i < matr2.GetLength(1); i++)
+    FillArray(matrix);
+    PrintArray(matrix);
+    Console.WriteLine();
+    FillArray(matrix2);
+    PrintArray(matrix2);
+    Console.WriteLine();
+
+    int[,] matr3 = new int[matrix.GetLength(0), matrix2.GetLength(1)];
+    for (int i = 0; i < matr3.GetLength(0); i++)
     {
-        for (int j = 0; j < matr2.GetLength(0); j++)
+        for (int j = 0; j < matr3.GetLength(1); j++)
         {
-            matr3 [i, j] = 0;
-                    for (int k = 0; k < matr2.GetLength(0); k++)
-                    {
-                        matr3[i, j] = matr1[i, k] * matr2[k, j];
-                    }
+            for (int k = 0; k < matrix2.GetLength(0); k++)
+            {
+                matr3[i, j] = matrix[i, k] * matrix2[k, j] + matrix[i, k + 1] * matrix2[k + 1, j];
+            }
         }
     }
-    return matr3;
+    PrintArray(matr3);
 }
 
-int[,] matrix3 = ProductArrays(matrix,matrix2);
-PrintArray(matrix3);
+else Console.WriteLine("Умножить матрицы невозможно");
