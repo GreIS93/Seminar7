@@ -53,13 +53,17 @@ if (matrix.GetLength(1) == matrix2.GetLength(0))
     {
         for (int j = 0; j < matr3.GetLength(1); j++)
         {
-            for (int k = 0; k < matrix2.GetLength(0); k++)
+            for (int k = 0; k < matrix.GetLength(1); k++)
             {
-                matr3[i, j] = matrix[i, k] * matrix2[k, j] + matrix[i, k + 1] * matrix2[k + 1, j];
+                for (int s = 1; s < matrix2.GetLength(0); s++)
+                {
+                    matr3[i, j] = matrix[i, k] * matrix2[k, j] + matrix[i, s] * matrix2[s, j];
+                }
             }
         }
     }
     PrintArray(matr3);
 }
-
 else Console.WriteLine("Умножить матрицы невозможно");
+
+// matr3[i, j] = matrix[i, k] * matrix2[k, j] + matrix[i, k + 1] * matrix2[k + 1, j];
